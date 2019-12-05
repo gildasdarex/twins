@@ -1,5 +1,5 @@
 require "twins/version"
+require "twins/detector"
 
 module Twins
-  # Your code goes here...
 end

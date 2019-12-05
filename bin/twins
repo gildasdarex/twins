@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'twins'
+
+if ARGV[0] && ARGV[1]
+  a = eval(ARGV[0])
+  b = eval(ARGV[1])
+
+  abort('Arguments are not valid arrays') unless a.is_a?(Array) && b.is_a?(Array)
+
+  puts Twins::Detector.twins(a, b)
+else
+  abort('You need to provide the arrays a and b')
+end
