@@ -5,6 +5,17 @@ pipeline {
          stages {
                  stage('One') {
                  steps {
+                     script {
+                         def vmRequestFolder = "${workspace}/vm-requests"
+                         vmRequestFolder.eachFileRecurse (FileType.FILES) { file ->
+                             list << file
+                         }
+
+                         list.each {
+                             println it.path
+                         }
+                     }
+
                      sh "ls ${workspace}"
                  }
                  }
