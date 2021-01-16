@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     resquests_data.each {
-                        println data_yaml.pathname
+                        println it.pathname
                     }
                 }
             }
