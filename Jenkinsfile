@@ -1,7 +1,10 @@
 pipeline {
          agent any
 
-         load "/Users/tdarex/Documents/dev/projects/ibm/Automation-master/vm-managment/.envvars/sphere-dev.groovy"
+
+        node {
+            load "/Users/tdarex/Documents/dev/projects/ibm/Automation-master/vm-managment/.envvars/sphere-dev.groovy"
+        }
 
          stages {
                  stage('One') {
