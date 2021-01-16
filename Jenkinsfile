@@ -5,8 +5,6 @@ pipeline {
          stages {
                  stage('One') {
                  steps {
-                     echo "Hi, this is Zulaikha from ${TF_VAR_cluster_name}"
-
                      sh "ls ${workspace}"
                  }
                  }
