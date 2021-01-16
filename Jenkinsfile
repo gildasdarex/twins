@@ -1,3 +1,5 @@
+import static groovy.io.FileType.FILES
+
 pipeline {
          agent any
 
@@ -6,6 +8,8 @@ pipeline {
                  stage('One') {
                  steps {
                      script {
+                         import groovy.io.FileType
+
                          def vmRequestFolder = "${workspace}/vm-requests"
                          vmRequestFolder.eachFileRecurse (FileType.FILES) { file ->
                              list << file
