@@ -11,7 +11,7 @@ def loadValuesYaml(request_yaml){
 }
 
 def setUpEnv(data_yaml){
-    def computerNameEnv = "export TF_var_computer_name=${data_yaml.computer_name}"
+    def computerNameEnv = "export TF_var_computer_name=${data_yaml.computer_name}".execute()
 }
 
 pipeline {
