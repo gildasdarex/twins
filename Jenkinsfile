@@ -6,8 +6,12 @@ def getRequestFiles(dir){
 }
 
 def loadValuesYaml(request_yaml){
-    def valuesYaml = readYaml (file: request_yaml)
+    def valuesYaml = readYaml(file: request_yaml)
     return valuesYaml;
+}
+
+def setUpEnv(data_yaml){
+    def computerNameEnv = "export TF_var_computer_name=${data_yaml.computer_name}"
 }
 
 pipeline {
@@ -22,6 +26,7 @@ pipeline {
                     vmRequestFiles.each {
                         def request_yaml = "${workspace}/vm-requests/${it}"
                         def data_yaml = loadValuesYaml(request_yaml)
+                        setUpEnv(data_yaml)
                         println data_yaml.computer_name
                     }
                 }
@@ -29,8 +34,11 @@ pipeline {
                 sh "ls ${workspace}"
             }
         }
+
+
         stage('Two') {
             steps {
+                echo " ENV VARIABLE ${TF_var_computer_name}"
                 input('Do you want to proceed?')
             }
         }
