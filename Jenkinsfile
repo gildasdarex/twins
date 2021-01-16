@@ -18,7 +18,7 @@ pipeline {
                        }
                  }
                  steps {
-                       echo "Hello"
+                       echo "Darex"
                  }
                  }
                  stage('Four') {
