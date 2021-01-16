@@ -15,7 +15,7 @@ pipeline {
                      script {
                          def vmRequestFiles = getRequestFiles("${workspace}/vm-requests")
                          vmRequestFiles.each {
-                             println it.path
+                             println it
                          }
                      }
 
