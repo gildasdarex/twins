@@ -14,6 +14,15 @@ def setUpEnv(data_yaml){
     def computerNameEnv = "export TF_var_computer_name=${data_yaml.computer_name}".execute()
 }
 
+def terraformStage(data_yaml, request_file){
+    script {
+        stage(" Execute Request ${request_file} ") {
+            println "${data_yaml.computer_name}"
+            sh "ls ${workspace}/vm-requests"
+        }
+    }
+}
+
 pipeline {
     agent any
 
@@ -26,8 +35,7 @@ pipeline {
                     vmRequestFiles.each {
                         def request_yaml = "${workspace}/vm-requests/${it}"
                         def data_yaml = loadValuesYaml(request_yaml)
-                        setUpEnv(data_yaml)
-                        println data_yaml.computer_name
+                        terraformStage(data_yaml, it)
                     }
                 }
 
@@ -38,7 +46,6 @@ pipeline {
 
         stage('Two') {
             steps {
-                echo " ENV VARIABLE ${TF_var_computer_name}"
                 input('Do you want to proceed?')
             }
         }
