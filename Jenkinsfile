@@ -13,8 +13,6 @@ pipeline {
                  stage('One') {
                  steps {
                      script {
-                         import groovy.io.FileType
-
                          def vmRequestFiles = getRequestFiles("${workspace}/vm-requests")
                          vmRequestFiles.each {
                              println it.path
