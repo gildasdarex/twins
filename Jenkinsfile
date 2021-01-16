@@ -1,5 +1,9 @@
-#!groovy
-import static groovy.io.FileType.FILES
+def getRequestFiles(dir){
+    def fileList = "ls ${dir}".execute()
+    def files= []
+    fileList.text.eachLine {files.add(it)}
+    return files
+}
 
 pipeline {
          agent any
@@ -11,12 +15,8 @@ pipeline {
                      script {
                          import groovy.io.FileType
 
-                         def vmRequestFolder = "${workspace}/vm-requests"
-                         vmRequestFolder.eachFileRecurse (FileType.FILES) { file ->
-                             list << file
-                         }
-
-                         list.each {
+                         def vmRequestFiles = getRequestFiles("${workspace}/vm-requests")
+                         vmRequestFiles.each {
                              println it.path
                          }
                      }
