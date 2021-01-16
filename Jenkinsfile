@@ -1,3 +1,5 @@
+def resquests_data = []
+
 def getRequestFiles(dir){
     def fileList = "ls ${dir}".execute()
     def files= []
@@ -35,7 +37,8 @@ pipeline {
                     vmRequestFiles.each {
                         def request_yaml = "${workspace}/vm-requests/${it}"
                         def data_yaml = loadValuesYaml(request_yaml)
-                        terraformStage(data_yaml, it)
+                        data_yaml.pathname = it
+                        resquests_data << data_yaml
                     }
                 }
 
@@ -43,6 +46,14 @@ pipeline {
             }
         }
 
+
+        stage('Terraform') {
+            script {
+                resquests_data.each {
+                    println data_yaml.pathname
+                }
+            }
+        }
 
         stage('Two') {
             steps {
