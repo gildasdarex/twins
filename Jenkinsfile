@@ -1,3 +1,4 @@
+#!groovy
 import static groovy.io.FileType.FILES
 
 pipeline {
