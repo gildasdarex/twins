@@ -48,9 +48,11 @@ pipeline {
 
 
         stage('Terraform') {
-            script {
-                resquests_data.each {
-                    println data_yaml.pathname
+            steps {
+                script {
+                    resquests_data.each {
+                        println data_yaml.pathname
+                    }
                 }
             }
         }
