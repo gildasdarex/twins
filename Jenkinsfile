@@ -2,6 +2,7 @@ def resquests_data = []
 
 def getRequestFiles(dir){
     def fileList = "ls ${dir}".execute()
+    println fileList
     def files= []
     fileList.text.eachLine {files.add(it)}
     return files
