@@ -35,10 +35,11 @@ pipeline {
                 script {
                     def vmRequestFiles = getRequestFiles("${workspace}/vm-requests")
                     vmRequestFiles.each {
+                        println it
                         def request_yaml = "${workspace}/vm-requests/${it}"
                         def data_yaml = loadValuesYaml(request_yaml)
                         data_yaml.pathname = it
-                        resquests_data << data_yaml
+                        resquests_data.add(data_yaml)
                     }
                 }
 
